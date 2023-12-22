@@ -11,7 +11,10 @@ class Trip extends Model
 
     protected $guarded = [];
 
-    public function location() {
-        return $this->belongsTo(Location::class);
+    public function departureLocation() {
+        return $this->belongsTo(Location::class, 'departure_location' );
+    }
+    public function arrivalLocation() {
+        return $this->belongsTo(Location::class, 'arrival_location' );
     }
 }

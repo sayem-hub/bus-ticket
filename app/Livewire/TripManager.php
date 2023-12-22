@@ -9,12 +9,12 @@ use App\Models\Location;
 class TripManager extends Component
 {
 
-    public $bus_number, $trip_date, $departure_location, $arrival_location, $trip_type, $trip_fare, $departure_date_time, $arrival_date_time, $trip_status, $trip, $mode;
+    public $bus_number, $trip_date, $departure_location, $arrival_location, $trip_type, $trip_fare, $departure_date_time, $arrival_date_time, $trip_status, $trip, $mode, $selectedTripId;
     public function render()
     {
-        $trips = Trip::all();
+        $trips = Trip::with('departureLocation', 'arrivalLocation')->get();
         $locations = Location::all();
-        return view('livewire.trip-manager', compact('trips', 'locations'));
+        return view('livewire.trip-manager', compact('trips', 'locations'))->layout('layouts.app');
     }
 
 
@@ -42,7 +42,20 @@ class TripManager extends Component
     public function edit($id)
     {
         $this->mode = 'edit';
-        $this->trip = Trip::findOrFail($id);
+        $tripsData = Trip::findOrFail($id);
+        $this->trip = [
+            'id' => $tripsData->id,
+            'bus_number' => $tripsData->bus_number,
+            'trip_date' => $tripsData->trip_date,
+            'departure_location' => $tripsData->departure_location,
+            'arrival_location' => $tripsData->arrival_location,
+            'trip_type' => $tripsData->trip_type,
+            'trip_fare' => $tripsData->trip_fare,
+            'departure_date_time' => $tripsData->departure_date_time,
+            'arrival_date_time' => $tripsData->arrival_date_time,
+            'trip_status' => $tripsData->trip_status,
+
+        ];
     }
 
     public function save()
@@ -55,7 +68,7 @@ class TripManager extends Component
 
             Trip::create($this->trip);
         } elseif ($this->mode === 'edit') {
-            $this->trip->update();
+            Trip::find($this->trip['id'])->update($this->trip);
         }
 
         $this->resetTrip();
@@ -66,6 +79,12 @@ class TripManager extends Component
     {
         $this->mode = null;
         $this->resetTrip();
+    }
+
+    public function delete($id)
+    {
+        $buyer = Trip::findOrFail($id);
+        $buyer->delete();
     }
 
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\LocationManager;
+use App\Livewire\TripManager;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home.page');
+
+
+Route::get('/location', LocationManager::class)->name('location.page');
+Route::get('/trips', TripManager::class)->name('trip.page');

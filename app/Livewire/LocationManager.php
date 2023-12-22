@@ -8,11 +8,11 @@ use Livewire\Component;
 class LocationManager extends Component
 {
 
-    public $location_name, $location, $mode;
+    public $location_name, $location, $mode, $selectedLocationId;
     public function render()
     {
         $allLocation = Location::all();
-        return view('livewire.location-manager', compact('allLocation'));
+        return view('livewire.location-manager', compact('allLocation'))->layout('layouts.app');
     }
 
 
@@ -32,7 +32,12 @@ class LocationManager extends Component
     public function edit($id)
     {
         $this->mode = 'edit';
-        $this->location = Location::findOrFail($id);
+    $locationData = Location::findOrFail($id);
+    $this->location = [
+        'selectedLocationId' => $locationData->id,
+        'location_name' => $locationData->location_name,
+
+    ];
     }
 
 
@@ -46,7 +51,8 @@ class LocationManager extends Component
             // dd($this->location);
             Location::create($this->location);
         } elseif ($this->mode === 'edit') {
-            $this->location->update($this->location);
+            //update location data
+            Location::find($this->location['selectedLocationId'])->update($this->location);
         }
 
         $this->resetLocation();

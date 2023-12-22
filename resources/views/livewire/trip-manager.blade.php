@@ -13,7 +13,10 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-3">
                     <div>
                         <label for="trip.bus_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bus Number</label>
-                        <input type="text" wire:model="trip.bus_number" id="trip.bus_no" autocomplete="given-name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="trip.bus_number" wire:model.defer="trip.bus_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a Bus</option>
+                            <option value="001">001</option>
+                          </select>
                     </div>
              
       
@@ -80,7 +83,6 @@
                         <option selected>Choose a status</option>
                         <option value="1">Live</option>
                         <option value="0">Completed</option>
-                       
                       </select>
                 </div>
               
@@ -123,8 +125,8 @@
                     <td class="px-6 py-3">{{ ++$key }}</td>
                     <td>{{ $trip->trip_date }}</td>
                     <td>{{ $trip->bus_number }}</td>
-                    <td>{{ $trip->departure_location }}</td>
-                    <td>{{ $trip->arrival_location }}</td>
+                    <td>{{ $trip->departureLocation->location_name }}</td>
+                    <td>{{ $trip->arrivalLocation->location_name }}</td>
                     <td>{{ $trip->trip_type }}</td>
                     <td>{{ $trip->trip_fare }}</td>
                     <td>{{ $trip->departure_date_time }}</td>
@@ -136,9 +138,10 @@
                         
                     @endif
                     <td>
-                        <div class="d-flex justify-content-between">
-                        <button class="btn btn-success btn-sm" wire:click="edit({{ $trip->id }})">Edit</button>
-                        {{-- <button class="btn btn-danger btn-sm" wire:click="delete({{ $buyer->id }})">Del</button> --}}
+                        <div class="flex space-x-2">
+                        <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" wire:click="edit({{ $trip->id }})">Edit</button>
+                        <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:click="delete({{ $trip->id }})">Del</button>
+                       
                     </div>
                     </td>
                 </tr>
