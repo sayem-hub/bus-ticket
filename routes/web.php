@@ -1,8 +1,11 @@
 <?php
 
-use App\Livewire\LocationManager;
+use App\Livewire\HomePage;
 use App\Livewire\TripManager;
+use App\Livewire\LocationManager;
+use App\Livewire\SeatSelectionForm;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\BookingConfirmationForm;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home.page');
 
 
+Route::get('/', HomePage::class)->name('home.page');
 Route::get('/location', LocationManager::class)->name('location.page');
 Route::get('/trips', TripManager::class)->name('trip.page');
+
+Route::get('/seat-selection', SeatSelectionForm::class)->name('seat.selection');
+Route::get('/booking-confirmation/{seats}', BookingConfirmationForm::class)->name('booking.confirmation');

@@ -9,7 +9,7 @@ use App\Models\Location;
 class TripManager extends Component
 {
 
-    public $bus_number, $trip_date, $departure_location, $arrival_location, $trip_type, $trip_fare, $departure_date_time, $arrival_date_time, $trip_status, $trip, $mode, $selectedTripId;
+    public $bus_number, $trip_date, $departure_location, $arrival_location, $trip_type, $total_seats, $trip_fare, $departure_date_time, $arrival_date_time, $trip_status, $trip, $mode, $selectedTripId;
     public function render()
     {
         $trips = Trip::with('departureLocation', 'arrivalLocation')->get();
@@ -24,6 +24,7 @@ class TripManager extends Component
         'trip.departure_location' => 'required',
         'trip.arrival_location' => 'required',
         'trip.trip_type' => 'nullable',
+        'trip.total_seats' => 'required',
         'trip.trip_fare' => 'required',
         'trip.departure_date_time' => 'required',
         'trip.arrival_date_time' => 'required',
@@ -50,6 +51,7 @@ class TripManager extends Component
             'departure_location' => $tripsData->departure_location,
             'arrival_location' => $tripsData->arrival_location,
             'trip_type' => $tripsData->trip_type,
+            'total_seats' => $tripsData->total_seats,
             'trip_fare' => $tripsData->trip_fare,
             'departure_date_time' => $tripsData->departure_date_time,
             'arrival_date_time' => $tripsData->arrival_date_time,
@@ -96,6 +98,7 @@ class TripManager extends Component
             'departure_location' => '',
             'arrival_location' => '',
             'trip_type' => '',
+            'total_seats' => '',
             'trip_fare' => '',
             'departure_date_time' => '',
             'arrival_date_time' => '',

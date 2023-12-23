@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('arrival_location');
             $table->foreign('arrival_location')->references('id')->on('locations')->onDelete('restrict')->onUpdate('cascade');
             $table->string('trip_type')->nullable();
+            $table->integer('total_seats');
+            $table->integer('available_seats');
             $table->integer('trip_fare');
             $table->dateTime('departure_date_time');
             $table->dateTime('arrival_date_time');

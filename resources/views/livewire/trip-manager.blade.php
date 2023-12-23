@@ -54,7 +54,10 @@
                 <input id="trip.trip_type" wire:model="trip.trip_type" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Optional">
              </div>
               
-
+             <div>
+                <label for="trip.total_seats" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Seats</label>
+                <input id="trip.total_seats" wire:model="trip.total_seats" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+             </div>
       
               <div>
                 <label for="trip.trip_fare" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trip Fare</label>
@@ -106,6 +109,8 @@
                 <th class="px-6 py-3">From Location</th>
                 <th class="px-6 py-3">To Location</th>
                 <th class="px-6 py-3">Type</th>
+                <th class="px-6 py-3">Total Seats</th>
+                <th class="px-6 py-3">Available Seats</th>
                 <th class="px-6 py-3">Trip Fare</th>
                 <th class="px-6 py-3">Departure Date and Time</th>
                 <th class="px-6 py-3">Arrival Date and Time</th>
@@ -128,6 +133,8 @@
                     <td>{{ $trip->departureLocation->location_name }}</td>
                     <td>{{ $trip->arrivalLocation->location_name }}</td>
                     <td>{{ $trip->trip_type }}</td>
+                    <td>{{ $trip->total_seats }}</td>
+                    <td>{{ $trip->available_seats }}</td>
                     <td>{{ $trip->trip_fare }}</td>
                     <td>{{ $trip->departure_date_time }}</td>
                     <td>{{ $trip->arrival_date_time }}</td>
