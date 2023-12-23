@@ -10,27 +10,27 @@ class SeatSelectionForm extends Component
 {
 
   
-    public $selectedSeats = [];
 
     public $showSeatSelectionForm = false;
 
-    public function render()
+    #[On('setTrip')]
+    public function render($trip)
     {
-        // Fetch available seats based on the selected trip or any other criteria
-        $availableSeats = []; // Replace with your logic to get available seats
 
-        return view('livewire.seat-selection-form', ['availableSeats' => $availableSeats]);
+        return route('seat.selection    ', ['seats' => $this->selectedSeats]);
+        // Fetch available seats based on the selected trip or any other criteria
+        // $availableSeats = []; // Replace with your logic to get available seats
+
+        // return view('livewire.seat-selection-form', ['availableSeats' => $availableSeats, 'trip' => $trip]);
     }
 
    
-    public function mount()
+   
+   
+    public function selectSeatsHere($tripId = null)
     {
-        $this->on('selectSeats', 'selectSeats');
-    }
 
-    #[On('selectSeats')]
-    public function selectSeats($tripId)
-    {
+        
         $seats = Trip::where('trip_id', $tripId)->get();
 
      // Render the seat selection form with the fetched seats

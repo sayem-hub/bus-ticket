@@ -102,7 +102,9 @@
                                 <td>{{ $result->available_seats }}</td>
                                 <td>{{ $result->trip_fare }}</td>
                                 <td>
-                                    <button type="button" wire:click="bookNow({{ $result->id }})" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Book Now</button>                            </tr>
+                                    <button wire:click="bookNow({{ $result->id }})" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Book Now</button>                            
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

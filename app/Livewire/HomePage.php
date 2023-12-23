@@ -29,12 +29,12 @@ class HomePage extends Component
     public function search()
     {
 
-    try {
-        $this->searchResults = Trip::with('departureLocation', 'arrivalLocation')
-            ->where('departure_location', $this->trip['departure_location'])
-            ->where('arrival_location', $this->trip['arrival_location'])
-            ->where('trip_date', $this->trip['trip_date'])
-            ->get();
+        try {
+            $this->searchResults = Trip::with('departureLocation', 'arrivalLocation')
+                ->where('departure_location', $this->trip['departure_location'])
+                ->where('arrival_location', $this->trip['arrival_location'])
+                ->where('trip_date', $this->trip['trip_date'])
+                ->get();
 
 
         } catch (\Exception $e) {
@@ -46,7 +46,8 @@ class HomePage extends Component
 
     public function bookNow($tripId)
     {
-        $this->dispatch('selectSeats', ['tripId' => $tripId]);
+        $requestTrips = Trip::find($tripId);
+        $this->dispatch('setTrip', trip: $requestTrips);
     }
 
 }

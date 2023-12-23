@@ -24,6 +24,8 @@ class User extends Authenticatable
         'phone',
     ];
 
+    
+
     public function seats()
     {
         return $this->hasMany(SeatAllocation::class);
