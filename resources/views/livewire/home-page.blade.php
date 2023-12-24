@@ -1,10 +1,19 @@
 <div>
 
-    <h1 class="text-4xl text-emerald-500 font-extrabold dark:text-white mt-5 text-center">Welcome to Sayem Travels</h1>
+    <h1 class="text-4xl text-teal-600 font-extrabold dark:text-white mt-5 text-center">Welcome to Sayem Travels</h1>
 
     <h3 class="text-2xl font-extrabold dark:text-white mt-5 text-indigo-500">Find Your Trips</h3>
    
     
+    {{-- Session message by tailwind css --}}
+
+
+     @if (session()->has('success'))
+                    <div class="text-green-500 font-bold text-center py-2 px-4 rounded bg-green-100 mb-4">
+                        {{ session()->get('success') }}
+                    </div>
+        @endif
+
         <form class="m-8" wire:submit="search">
 
             <div class="grid gap-6 mb-6 md:grid-cols-2 w-1/2">
@@ -71,7 +80,7 @@
         <h3 class="text-2xl font-extrabold dark:text-white mt-5 text-indigo-500">Search Results</h3>
       
 
-            <p class="text-lg font-bold dark:text-white text-center">{{ $searchResults[0]->departureLocation->location_name }} from {{ $searchResults[0]->arrivalLocation->location_name }} on {{ $searchResults[0]->trip_date }}</p>
+            <p class="text-lg font-bold dark:text-white text-center">From {{ $searchResults[0]->departureLocation->location_name }} to {{ $searchResults[0]->arrivalLocation->location_name }} on {{ $searchResults[0]->trip_date }}</p>
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -102,7 +111,7 @@
                                 <td>{{ $result->available_seats }}</td>
                                 <td>{{ $result->trip_fare }}</td>
                                 <td>
-                                    <button wire:click="bookNow({{ $result->id }})" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Book Now</button>                            
+                                   <button class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><a href="{{ route('seat.selection', ['tripId' => $result->id]) }}">Book Now</a></button>                           
                                 </td>
                             </tr>
                         @endforeach

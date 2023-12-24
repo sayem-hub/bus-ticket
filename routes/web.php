@@ -24,5 +24,5 @@ Route::get('/', HomePage::class)->name('home.page');
 Route::get('/location', LocationManager::class)->name('location.page');
 Route::get('/trips', TripManager::class)->name('trip.page');
 
-Route::get('/seat-selection', SeatSelectionForm::class)->name('seat.selection');
+Route::get('/seat-selection/{tripId}', SeatSelectionForm::class)->name('seat.selection');
 Route::get('/booking-confirmation/{seats}', BookingConfirmationForm::class)->name('booking.confirmation');

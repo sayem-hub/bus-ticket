@@ -9,7 +9,7 @@ use App\Models\Location;
 class TripManager extends Component
 {
 
-    public $bus_number, $trip_date, $departure_location, $arrival_location, $trip_type, $total_seats, $trip_fare, $departure_date_time, $arrival_date_time, $trip_status, $trip, $mode, $selectedTripId;
+    public $bus_number, $trip_date, $departure_location, $arrival_location, $trip_type, $total_seats, $available_seats, $trip_fare, $departure_date_time, $arrival_date_time, $trip_status, $trip, $mode, $selectedTripId;
     public function render()
     {
         $trips = Trip::with('departureLocation', 'arrivalLocation')->get();
@@ -67,7 +67,7 @@ class TripManager extends Component
         $user = auth()->user(); // Get the currently logged-in user
 
         if ($this->mode === 'create') {
-
+            $this->trip['available_seats'] = $this->trip['total_seats'];
             Trip::create($this->trip);
         } elseif ($this->mode === 'edit') {
             Trip::find($this->trip['id'])->update($this->trip);

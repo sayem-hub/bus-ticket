@@ -17,11 +17,10 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
             $table->unsignedBigInteger('trip_id');
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('restrict')->onUpdate('cascade');
+            $table->date('trip_date');
             $table->string('seat_number');
-            $table->unsignedBigInteger('from_location_id');
-            $table->foreign('from_location_id')->references('id')->on('locations')->onDelete('restrict')->onUpdate('cascade');
-            $table->unsignedBigInteger('to_location_id');
-            $table->foreign('to_location_id')->references('id')->on('locations')->onDelete('restrict')->onUpdate('cascade');
+            $table->unsignedBigInteger('boarding_point');
+            $table->foreign('boarding_point')->references('id')->on('locations')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
     }
