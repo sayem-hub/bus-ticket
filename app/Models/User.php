@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function seats()
     {
-        return $this->hasMany(SeatAllocation::class, 'boarding_point');
+        return $this->hasMany(SeatAllocation::class, 'user_id');
     }
 
     public function departureLocation() {

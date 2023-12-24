@@ -47,7 +47,6 @@
                   </select>              
                 </div>
              
-
       
               <div>
                 <label for="trip.trip_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trip Type</label>
@@ -63,22 +62,18 @@
                 <label for="trip.trip_fare" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trip Fare</label>
                 <input id="trip.trip_fare" wire:model="trip.trip_fare" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
-          
-
       
               <div>
                 <label for="trip.departure_date_time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departure Date and Time</label>
                 <input id="trip.departure_date_time" wire:model="trip.departure_date_time" type="datetime-local" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
               
-
       
               <div>
                 <label for="trip.arrival_date_time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arrival Date and Time</label>
                 <input id="trip.arrival_date_time" wire:model="trip.arrival_date_time" type="datetime-local" autocomplete="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
              
-
                 
                 <div>
                     <label for="trip.trip_status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
@@ -121,7 +116,7 @@
         <tbody>
             @if ($trips->count() == 0)
                 <tr>
-                    <td colspan="10" class="px-6 py-4 text-center">No Trips Found!</td>
+                    <td colspan="13" class="px-6 py-4 text-center">No Trips Found!</td>
                 </tr>
                 
             @endif

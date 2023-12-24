@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,6 +18,7 @@ return new class extends Migration
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('restrict')->onUpdate('cascade');
             $table->date('trip_date');
             $table->string('seat_number');
+            $table->integer('total_fare');
             $table->unsignedBigInteger('boarding_point');
             $table->foreign('boarding_point')->references('id')->on('locations')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();

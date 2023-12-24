@@ -19,7 +19,7 @@ class ProfileManager extends Component
     public function searchByPhone()
     {
         $getUserData = User::with( 'seats')->where('phone', $this->phone)->get();
-           
+        //    dd($getUserData);
         $this->getUserData = $getUserData;
        
     }

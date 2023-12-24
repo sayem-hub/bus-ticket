@@ -35,12 +35,16 @@
 
    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <h3 class="text-2xl font-extrabold dark:text-white mt-5 text-indigo-500">Your Trip Details</h3>
+
+    <ul>
+        <li class="text-lg font-medium text-gray-900 dark:text-white">Name: {{ $getUserData[0]->name }}</li>
+        <li class="text-lg font-medium text-gray-900 dark:text-white">Phone: {{ $getUserData[0]->phone }}</li>
+        <li class="text-lg font-medium text-gray-900 dark:text-white">Address: {{ $getUserData[0]->address }}</li>
+    </ul>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr class="text-center">
-                <th class="px-6 py-3">Name</th>
-                <th class="px-6 py-3">Phone</th>
-                <th class="px-6 py-3">Address</th>
+                
                 <th class="px-6 py-3">Trip Date</th>
                 <th class="px-6 py-3">Boarding Point</th>
                 <th class="px-6 py-3">Number of Seats</th>
@@ -56,10 +60,10 @@
             @endif
             @foreach ($getUserData as $key=>$result)
                 <tr class="text-center">
-                    <td>{{ $result->name }}</td>
-                    <td>{{ $result->phone }}</td>
-                    <td>{{ $result->address }}</td>
-                    <td>{{ $result->trip_date }}</td>
+                    
+                    @foreach ($result->seats as $key=>$seat)
+                       <td>{{ $seat->trip_date }}</td> 
+                    @endforeach
                     <td>{{ $result->seat_number }}</td>
                     <td>{{ $result->total_fare }}</td>
                 </tr>
