@@ -6,6 +6,7 @@ use App\Livewire\LocationManager;
 use App\Livewire\SeatSelectionForm;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\BookingConfirmationForm;
+use App\Livewire\ProfileManager;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,5 @@ Route::get('/location', LocationManager::class)->name('location.page');
 Route::get('/trips', TripManager::class)->name('trip.page');
 
 Route::get('/seat-selection/{tripId}', SeatSelectionForm::class)->name('seat.selection');
-Route::get('/booking-confirmation/{seats}', BookingConfirmationForm::class)->name('booking.confirmation');
+
+Route::get('/profile', ProfileManager::class)->name('profile.page');

@@ -44,10 +44,4 @@ class HomePage extends Component
     }
 
 
-    public function bookNow($tripId)
-    {
-        $requestTrips = Trip::find($tripId);
-        $this->dispatch('setTrip', trip: $requestTrips);
-    }
-
 }
