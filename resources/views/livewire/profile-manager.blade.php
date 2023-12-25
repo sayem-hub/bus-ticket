@@ -3,7 +3,7 @@
 
    <div class="container mx-auto">
     <div class="flex flex-col justify-center items-center">
-        <h3 class="text-2xl font-extrabold dark:text-white mt-5 text-lime-900">User Section</h3>
+        <h3 class="text-2xl font-extrabold dark:text-white mt-5 text-lime-900">Passenger Portal</h3>
     </div>
 
 

@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Location;
 use App\Models\SeatAllocation;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class SeatSelectionForm extends Component
@@ -57,27 +58,30 @@ class SeatSelectionForm extends Component
         
         try {
 
+          
+
+
+            if (Auth::check()) {
+                $user = Auth::user();
+            } else {
+
+                $user = User::create([
+                    'name' => $validateData['name'],
+                    'phone' => $validateData['phone'],
+                    'password' => bcrypt($validateData['phone']),
+                    'email' => $validateData['email'],
+                    'address' => $validateData['address'],
+                ]);
+
+            Auth::login($user);
+
+        }
             if ($this->available_seats < $validateData['seat_number']) {
                 throw new \Exception('You have entered more seats than available!');
             }
 
-
-            $existingUser = User::where('phone', $validateData['phone'])->first();
-
-            if ($existingUser) {
-                // User already exists, redirect to login
-                return redirect()->route('login.page')->with('error', 'Please login to proceed with booking.');
-            }
-
-            $userData = User::create([
-                'name' => $validateData['name'],
-                'phone' => $validateData['phone'],
-                'email' => $validateData['email'],
-                'address' => $validateData['address'],
-            ]);
-
             $booking = SeatAllocation::create([
-                'user_id' => $userData->id,
+                'user_id' => $user->id,
                 'trip_id' => $this->tripId,
                 'seat_number' => $validateData['seat_number'],
                 'boarding_point' => $validateData['boarding_point'],

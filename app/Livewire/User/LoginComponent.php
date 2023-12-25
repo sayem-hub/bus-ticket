@@ -4,7 +4,6 @@ namespace App\Livewire\User;
 
 use App\Models\User;
 use Livewire\Component;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginComponent extends Component
@@ -24,9 +23,10 @@ class LoginComponent extends Component
             'password' => 'required',
         ]);
 
-        // dd($credentials);
+
+       
         if (Auth::attempt(['phone' => $credentials['phone'], 'password' => $credentials['phone']])) {
-            return redirect()->intended('profile.page')->with('success', 'Login successful.'); 
+            return redirect()->route('profile.page')->with('success', 'Login successful.'); 
         }
 
         return redirect()->back()->with('error', 'Invalid credentials.');
