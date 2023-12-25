@@ -17,7 +17,8 @@ class SeatAllocation extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function seat() {
-        return $this->belongsTo(Trip::class);
+    public function boardingPoint()
+    {
+        return $this->belongsTo(Location::class, 'boarding_point');
     }
 }

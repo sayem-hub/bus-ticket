@@ -15,4 +15,9 @@ class Location extends Model
     {
         return $this->hasMany(Trip::class);
     }
+
+    // public function seatAssign(){
+
+    //     return $this->belongsTo(SeatAllocation::class);
+    // }
 }

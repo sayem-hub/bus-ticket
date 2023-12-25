@@ -1,17 +1,23 @@
 <div>
     <h2 class="text-2xl font-extrabold dark:text-white">Fill up the form to confirm your booking</h2>
+
+        @if (session()->has('success'))
+        <div class="text-green-500 font-bold text-center py-2 px-4 rounded bg-green-100 mt-3 mb-4">
+            {{ session()->get('success') }}
+        </div>
+        @endif
+
+
+
+        @if (session()->has('error'))
+        <div class="text-red-500 font-bold text-center py-2 px-4 rounded bg-red-100 mt-3 mb-4">
+            {{ session()->get('error') }}
+        </div>
+        @endif
     <form wire:submit.prevent="confirmBooking">
 
         <div class="grid gap-6 mb-6 md:grid-cols-2 w-1/2 mt-5">
-        {{-- <div>
-            <!-- Display available seats -->
-            @foreach ($availableSeats as $seatNumber)
-                <label>
-                    <input type="checkbox" wire:model="selectedSeats" value="{{ $seatNumber }}">
-                    {{ $seatNumber }}
-                </label>
-            @endforeach
-        </div> --}}
+           
 
         <div>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trip Date</label>

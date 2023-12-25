@@ -46,6 +46,7 @@
             <tr class="text-center">
                 
                 <th class="px-6 py-3">Trip Date</th>
+                <th class="px-6 py-3">Trip Route</th>
                 <th class="px-6 py-3">Boarding Point</th>
                 <th class="px-6 py-3">Number of Seats</th>
                 <th class="px-6 py-3">Total Fare</th>
@@ -61,9 +62,9 @@
             @foreach ($getUserData as $key=>$result)
                 <tr class="text-center">
                     
-                    @foreach ($result->seats as $key=>$seat)
-                       <td>{{ $seat->trip_date }}</td> 
-                    @endforeach
+                    <td>{{$result->trip_date }}</td>
+                    <td>{{ $result->from_location_name }} - {{ $result->to_location_name }}</td>
+                    <td>{{ $result->boarding_point_name }}</td>
                     <td>{{ $result->seat_number }}</td>
                     <td>{{ $result->total_fare }}</td>
                 </tr>

@@ -54,7 +54,20 @@ class SeatSelectionForm extends Component
 
         // dd($validateData);
         DB::beginTransaction();
+        
         try {
+
+            if ($this->available_seats < $validateData['seat_number']) {
+                throw new \Exception('You have entered more seats than available!');
+            }
+
+
+            $existingUser = User::where('phone', $validateData['phone'])->first();
+
+            if ($existingUser) {
+                // User already exists, redirect to login
+                return redirect()->back()->with('error', 'Please login to proceed with booking.');
+            }
 
             $userData = User::create([
                 'name' => $validateData['name'],
@@ -95,10 +108,10 @@ class SeatSelectionForm extends Component
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
-            throw $e;
+            return redirect()->back()->with('error', $e->getMessage());
 
         }
 
-        return redirect()->route('home.page');
+        
     }
 }

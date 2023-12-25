@@ -4,15 +4,7 @@
 
     <h3 class="text-2xl font-extrabold dark:text-white mt-5 text-indigo-500">Find Your Trips</h3>
    
-    
-    {{-- Session message by tailwind css --}}
-
-
-     @if (session()->has('success'))
-                    <div class="text-green-500 font-bold text-center py-2 px-4 rounded bg-green-100 mb-4">
-                        {{ session()->get('success') }}
-                    </div>
-        @endif
+      
 
         <form class="m-8" wire:submit="search">
 
@@ -79,8 +71,9 @@
     <div>
         <h3 class="text-2xl font-extrabold dark:text-white mt-5 text-indigo-500">Search Results</h3>
       
-
+        @if ($searchResults->count() > 0)
             <p class="text-lg font-bold dark:text-white text-center">From {{ $searchResults[0]->departureLocation->location_name }} to {{ $searchResults[0]->arrivalLocation->location_name }} on {{ $searchResults[0]->trip_date }}</p>
+            @endif
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -96,12 +89,16 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                       
+
                         @if ($searchResults->count() == 0)
-                            <tr>
-                                <td colspan="10" class="px-6 py-4 text-center">No Trip Found!</td>
-                            </tr>
-                            
-                        @endif
+                        <tr>
+                            <td colspan="7" class="px-6 py-4 text-center">No Trip Found!</td>
+                        </tr>
+                        
+                    @endif
+                    
                         @foreach ($searchResults as $key=>$result)
                             <tr class="text-center">
                                 <td>{{ $result->bus_number }}</td>
@@ -120,6 +117,8 @@
             </div>
        
     </div>
+
+    
 @endif
 
 
