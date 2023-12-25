@@ -4,8 +4,21 @@
    <div class="container mx-auto">
     <div class="flex flex-col justify-center items-center">
         <h3 class="text-2xl font-extrabold dark:text-white mt-5 text-lime-900">User Section</h3>
-        
     </div>
+
+
+    @if (session()->has('success'))
+    <div class="text-green-500 font-bold text-center py-2 px-4 rounded bg-green-100 mt-3 mb-4">
+        {{ session()->get('success') }}
+    </div>
+    @endif
+
+
+    @if (session()->has('error'))
+    <div class="text-red-500 font-bold text-center py-2 px-4 rounded bg-red-100 mt-3 mb-4">
+        {{ session()->get('error') }}
+    </div>
+    @endif
 
     <h6 class="text-2xl font-extrabold dark:text-white mt-5 text-indigo-500">Ticket Purchase History</h6>
     <p class="dark:text-white mt-5 text-black-500">To view your ticket purchase history type your phone number below</p>

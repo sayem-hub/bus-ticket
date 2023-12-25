@@ -14,6 +14,7 @@
             {{ session()->get('error') }}
         </div>
         @endif
+        
     <form wire:submit.prevent="confirmBooking">
 
         <div class="grid gap-6 mb-6 md:grid-cols-2 w-1/2 mt-5">

@@ -66,7 +66,7 @@ class SeatSelectionForm extends Component
 
             if ($existingUser) {
                 // User already exists, redirect to login
-                return redirect()->back()->with('error', 'Please login to proceed with booking.');
+                return redirect()->route('login.page')->with('error', 'Please login to proceed with booking.');
             }
 
             $userData = User::create([
